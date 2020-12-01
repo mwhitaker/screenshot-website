@@ -5125,16 +5125,17 @@ const core = __webpack_require__(470);
 const artifact = __webpack_require__(330);
 const loadInputs = __webpack_require__(480);
 
-let AsyncFunction = Object.getPrototypeOf(async () => null).constructor
 
 
 async function run() {
   try {
+    let AsyncFunction = Object.getPrototypeOf(async () => null).constructor
     // Get inputs: source, destination, and anything else
-    const { source, destination: destFile, ...inputs } = loadInputs();
+    const { source, destination: destFile, prescript, ...inputs } = loadInputs();
 
     core.debug(`source is ${source}`);
     core.debug(`destination is ${destFile}`);
+    core.debug(`prescript is ${prescript}`);
     core.debug(`other inputs are ${JSON.stringify(inputs, null, 4)}`);
 
 
@@ -5162,7 +5163,7 @@ async function run() {
       ...inputs
     };
 
-    options.beforeScreenshot = new AsyncFunction('page', 'browser', options.beforeScreenshot)
+    options.beforeScreenshot = new AsyncFunction('page', 'browser', prescript)
     core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
 
 

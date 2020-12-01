@@ -8,6 +8,10 @@ inputs:
     description: 'The destination filename the captured website will be written to'
     required: false
     default: 'screenshot.png'
+  prescript:
+    description: 'Script to run before generating screenshot'
+    required: false
+    default: 'console.log(`no code`)'
   delay:
     description: 'The number of seconds to wait after the page finished loading before capturing the screenshot'
     required: false
@@ -16,9 +20,6 @@ inputs:
     description: 'Capture the full scrollable page, not just the viewport'
     required: false
     default: false
-  before-screenshot:
-    description: 'Evaluate code before screenshot is saved'
-    required: false
 outputs:
   path:
     description: 'The filesystem path to the website screenshot'
