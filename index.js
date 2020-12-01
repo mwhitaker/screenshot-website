@@ -40,10 +40,11 @@ async function run() {
       },
       ...inputs
     };
-
-    if(options.beforeScreenshot) {
-      options.beforeScreenshot = new AsyncFunction('page', 'browser', script)
-		}
+    core.debug(`other options are ${JSON.stringify(options, null, 4)}`);
+    
+    // if(options.beforeScreenshot) {
+    //   options.beforeScreenshot = new AsyncFunction('page', 'browser', script)
+		// }
 
     // Capture and write to dest
     await captureWebsite.file(source, dest, options);
