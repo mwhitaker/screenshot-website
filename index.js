@@ -4,13 +4,19 @@ const core = require('@actions/core');
 const artifact = require('@actions/artifact');
 const loadInputs = require('./lib/load-inputs');
 
+const AsyncFunction = Object.getPrototypeOf(async () => null).constructor
+
+
 async function run() {
   try {
     // Get inputs: source, destination, and anything else
     const { source, destination: destFile, ...inputs } = loadInputs();
+    const script = core.getInput('before-screenshot', {required: false})
+
     core.debug(`source is ${source}`);
     core.debug(`destination is ${destFile}`);
     core.debug(`other inputs are ${JSON.stringify(inputs, null, 4)}`);
+    
 
     // Get destination
     const destFolder = process.env.RUNNER_TEMP;
@@ -35,6 +41,10 @@ async function run() {
       },
       ...inputs
     };
+
+    if(script) {
+      options.beforeScreenshot = new AsyncFunction('page', 'browser', script)
+		}
 
     // Capture and write to dest
     await captureWebsite.file(source, dest, options);
