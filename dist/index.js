@@ -5125,7 +5125,7 @@ const core = __webpack_require__(470);
 const artifact = __webpack_require__(330);
 const loadInputs = __webpack_require__(480);
 
-const AsyncFunction = Object.getPrototypeOf(async () => null).constructor
+let AsyncFunction = Object.getPrototypeOf(async () => null).constructor
 
 
 async function run() {
@@ -5162,7 +5162,7 @@ async function run() {
       ...inputs
     };
 
-
+            beforeScreenshot
     options.beforeScreenshot = new AsyncFunction('page', 'browser', options.beforeScreenshot)
     core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
 

@@ -4,7 +4,7 @@ const core = require('@actions/core');
 const artifact = require('@actions/artifact');
 const loadInputs = require('./lib/load-inputs');
 
-const AsyncFunction = Object.getPrototypeOf(async () => null).constructor
+let AsyncFunction = Object.getPrototypeOf(async () => null).constructor
 
 
 async function run() {
@@ -41,7 +41,7 @@ async function run() {
       ...inputs
     };
 
-
+            beforeScreenshot
     options.beforeScreenshot = new AsyncFunction('page', 'browser', options.beforeScreenshot)
     core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
 
