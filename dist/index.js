@@ -5136,7 +5136,7 @@ async function run() {
     core.debug(`source is ${source}`);
     core.debug(`destination is ${destFile}`);
     core.debug(`other inputs are ${JSON.stringify(inputs, null, 4)}`);
-    
+
 
     // Get destination
     const destFolder = process.env.RUNNER_TEMP;
@@ -5161,13 +5161,12 @@ async function run() {
       },
       ...inputs
     };
-    // if(options.beforeScreenshot) delete options.beforeScreenshot
-    
-    if(options.beforeScreenshot) {
-      options.beforeScreenshot = new AsyncFunction('page', 'browser', options.beforeScreenshot)
-      core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
-		}
-    
+
+
+    options.beforeScreenshot = new AsyncFunction('page', 'browser', options.beforeScreenshot)
+    core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
+
+
     core.debug(`other options are ${JSON.stringify(options, null, 4)}`);
     // Capture and write to dest
     await captureWebsite.file(source, dest, options);
