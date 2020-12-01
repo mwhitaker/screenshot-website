@@ -11,7 +11,6 @@ async function run() {
   try {
     // Get inputs: source, destination, and anything else
     const { source, destination: destFile, ...inputs } = loadInputs();
-    const script = core.getInput('before-screenshot', {required: false})
 
     core.debug(`source is ${source}`);
     core.debug(`destination is ${destFile}`);
@@ -42,7 +41,7 @@ async function run() {
       ...inputs
     };
 
-    if(script) {
+    if(options.beforeScreenshot) {
       options.beforeScreenshot = new AsyncFunction('page', 'browser', script)
 		}
 
