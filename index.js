@@ -43,10 +43,7 @@ async function run() {
     };
 
     options.beforeScreenshot = new AsyncFunction('page', 'browser', prescript)
-    core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
 
-
-    core.debug(`other options are ${JSON.stringify(options, null, 4)}`);
     // Capture and write to dest
     await captureWebsite.file(source, dest, options);
 
