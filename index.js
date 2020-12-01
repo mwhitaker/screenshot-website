@@ -41,6 +41,7 @@ async function run() {
       ...inputs
     };
     core.debug(`other options are ${JSON.stringify(options, null, 4)}`);
+    if(options.beforeScreenshot) delete options.beforeScreenshot
     
     // if(options.beforeScreenshot) {
     //   options.beforeScreenshot = new AsyncFunction('page', 'browser', script)
