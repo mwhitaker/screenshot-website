@@ -5165,6 +5165,7 @@ async function run() {
     
     if(options.beforeScreenshot) {
       options.beforeScreenshot = new AsyncFunction('page', 'browser', options.beforeScreenshot)
+      core.debug(`beforeScreenshot ${JSON.stringify(options.beforeScreenshot, null, 4)}`);
 		}
     
     core.debug(`other options are ${JSON.stringify(options, null, 4)}`);
